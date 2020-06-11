@@ -2,7 +2,7 @@
 #   Main Configs   #
 # ---------------- #
 baseurl:
-url: https://mazhuang.org
+url: 
 date_format: "ordinal"
 title: 急速蜗牛
 subtitle: "一直努力"
