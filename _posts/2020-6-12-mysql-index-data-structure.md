@@ -1,4 +1,10 @@
-索引是帮助MySQL高效获取数据的排好序的数据结构
+---
+layout: post
+title: Mysql 索引数据结构
+categories: java
+description: 索引是帮助MySQL高效获取数据的排好序的数据结构。
+keywords: java
+--- 
 
 ##Mysql 索引数据结构
 **索引是帮助MySQL高效获取数据的排好序的数据结构**
@@ -10,12 +16,12 @@
 我们创建索引时默认使用 BTREE，mysql 的 BTREE 是 B-Tree 的变种 B+Tree 
 数据结构的演示可以在网站[https://www.cs.usfca.edu/~galles/visualization/](https://www.cs.usfca.edu/~galles/visualization/)中进行
 ###B-Tree
-![](../images/posts/java/mysql-b-tree.jpg)
+![](../images/posts/mysql/mysql-b-tree.jpg)
 1~8依次插入，对于 mysql 索引，每个节点都存储索引相关数据 
 * 节点中的数据从左到有一次递增
 * 叶子结点具有相同的深度
 ###B+Tree
-![](../images/posts/java/mysql-b+tree.jpg)
+![](../images/posts/mysql/mysql-b+tree.jpg)
 * 节点中的数据从左到有依次递增
 * 1~8依次插入，对于 mysql 索引，只有叶子节点存储索引相关数据，可以看到叶子节点是带有指针的，从左到右依次为1~8，对于 mysql 来说，这里的指针是双向的，8也有指针指向1，双向指针也方便 mysql 对索引进行升序或降序排列。
 * 由于索引存储的时候B+Tree已经对索引做好排序，所以使用 order by 对索引排序时 explain 的 Extra 中一般看不到 Using filesort
@@ -53,7 +59,7 @@ Server version: 5.7.30 MySQL Community Server (GPL)
 ###MyISAM 和 InnoDB 存储引擎索引实现
 
 mysql data目录中 MyISAM 数据表的文件结构
-![](../images/posts/java/mysql-data-storage-structure.jpg)
+![](../images/posts/mysql/mysql-data-storage-structure.jpg)
 
 * 其中 myisam 开头的为 MyISAM 存储引擎的表，innodb 开头的为 InnoDB 存储引擎的表。
 
@@ -74,7 +80,7 @@ mysql data目录中 MyISAM 数据表的文件结构
 
 ###联合索引的底层存储结构
 
-![](../images/posts/java/mysql-joint-index-data-structure.jpg)
+![](../images/posts/mysql/mysql-joint-index-data-structure.jpg)
 
 以上结构可以解释最左前缀和覆盖索引等我们常说的mysql索引优化原理
 * 最左前缀：如果匹配最左前缀，那么 mysql 查询的时候根据第一个联合索引字段匹配到查找范围，然后在匹配到的子节点中根据第二个字段去匹配（因为B-Tree的原理，小于父节点的数据存储在左边的子节点中，大于等于父节点的数据存储在右边的子节点中）；如果没有匹配最左前缀，mysql 要扫描整个索引树，匹配到第二个字段的节点，然后继续查找...
