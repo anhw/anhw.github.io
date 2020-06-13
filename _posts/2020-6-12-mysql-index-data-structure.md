@@ -2,11 +2,12 @@
 layout: post
 title: Mysql 索引数据结构
 categories: database
-description: 索引是帮助MySQL高效获取数据的排好序的数据结构。
+description: 索引是帮助MySQL高效获取数据的排好序的数据结构
 keywords: java,database
 --- 
 
 ##Mysql 索引数据结构
+
 **索引是帮助MySQL高效获取数据的排好序的数据结构**
 * mysql 索引包含如下两种数据结构
   * BTREE
@@ -16,17 +17,20 @@ keywords: java,database
 我们创建索引时默认使用 BTREE，mysql 的 BTREE 是 B-Tree 的变种 B+Tree 
 数据结构的演示可以在网站[https://www.cs.usfca.edu/~galles/visualization/](https://www.cs.usfca.edu/~galles/visualization/)中进行
 ###B-Tree
+
 ![](../images/posts/database/mysql-b-tree.jpg)
 1~8依次插入，对于 mysql 索引，每个节点都存储索引相关数据 
 * 节点中的数据从左到有一次递增
 * 叶子结点具有相同的深度
 ###B+Tree
+
 ![](../images/posts/database/mysql-b+tree.jpg)
 * 节点中的数据从左到有依次递增
 * 1~8依次插入，对于 mysql 索引，只有叶子节点存储索引相关数据，可以看到叶子节点是带有指针的，从左到右依次为1~8，对于 mysql 来说，这里的指针是双向的，8也有指针指向1，双向指针也方便 mysql 对索引进行升序或降序排列。
 * 由于索引存储的时候B+Tree已经对索引做好排序，所以使用 order by 对索引排序时 explain 的 Extra 中一般看不到 Using filesort
 
 ###Hash
+
 * hash 表存储的数据，查询是非常快速的，快于B-Tree 但是只适合单值查询，因为各元素之间是没有指针关联，且是无序存放的，因此无法支持模糊查询，范围查询等，查找时用计算出来的hash码找映射表中存储数据的文件地址获取数据。
 
 mysql 的索引树中每个节点的大小默认是 16384byte(16KB),可以通过以下语句查看
@@ -39,9 +43,9 @@ mysql> SHOW GLOBAL STATUS LIKE 'Innodb_page_size';
 +------------------+-------+
 ```
 这个值是可以调节的,我所使用的mysql版本是
-```mysql
-Server version: 5.7.30 MySQL Community Server (GPL)
-```
+
+    Server version: 5.7.30 MySQL Community Server (GPL)
+    
 索引长度的计算
 * 字符串  
   * char(n)：n字节长度 
