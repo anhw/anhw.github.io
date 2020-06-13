@@ -2,7 +2,7 @@
 layout: post
 title: Mysql 索引数据结构
 categories: database
-description: 索引是帮助MySQL高效获取数据的排好序的数据结构
+description: 索引是帮助MySQL高效获取数据的排好序的数据结构。
 keywords: java,database
 --- 
 
@@ -16,12 +16,14 @@ keywords: java,database
   
 我们创建索引时默认使用 BTREE，mysql 的 BTREE 是 B-Tree 的变种 B+Tree 
 数据结构的演示可以在网站[https://www.cs.usfca.edu/~galles/visualization/](https://www.cs.usfca.edu/~galles/visualization/)中进行
+
 ###B-Tree
 
 ![](../images/posts/database/mysql-b-tree.jpg)
 1~8依次插入，对于 mysql 索引，每个节点都存储索引相关数据 
 * 节点中的数据从左到有一次递增
 * 叶子结点具有相同的深度
+
 ###B+Tree
 
 ![](../images/posts/database/mysql-b+tree.jpg)
