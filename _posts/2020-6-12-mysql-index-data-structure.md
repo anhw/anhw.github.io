@@ -6,7 +6,7 @@ description: 索引是帮助MySQL高效获取数据的排好序的数据结构�
 keywords: java,database
 --- 
 
-##Mysql 索引数据结构
+## Mysql 索引数据结构
 
 **索引是帮助MySQL高效获取数据的排好序的数据结构**
 * mysql 索引包含如下两种数据结构
@@ -17,21 +17,21 @@ keywords: java,database
 我们创建索引时默认使用 BTREE，mysql 的 BTREE 是 B-Tree 的变种 B+Tree 
 数据结构的演示可以在网站[https://www.cs.usfca.edu/~galles/visualization/](https://www.cs.usfca.edu/~galles/visualization/)中进行
 
-###B-Tree
+### B-Tree
 
 ![](../images/posts/database/mysql-b-tree.jpg)
 1~8依次插入，对于 mysql 索引，每个节点都存储索引相关数据 
 * 节点中的数据从左到有一次递增
 * 叶子结点具有相同的深度
 
-###B+Tree
+### B+Tree
 
 ![](../images/posts/database/mysql-b+tree.jpg)
 * 节点中的数据从左到有依次递增
 * 1~8依次插入，对于 mysql 索引，只有叶子节点存储索引相关数据，可以看到叶子节点是带有指针的，从左到右依次为1~8，对于 mysql 来说，这里的指针是双向的，8也有指针指向1，双向指针也方便 mysql 对索引进行升序或降序排列。
 * 由于索引存储的时候B+Tree已经对索引做好排序，所以使用 order by 对索引排序时 explain 的 Extra 中一般看不到 Using filesort
 
-###Hash
+### Hash
 
 * hash 表存储的数据，查询是非常快速的，快于B-Tree 但是只适合单值查询，因为各元素之间是没有指针关联，且是无序存放的，因此无法支持模糊查询，范围查询等，查找时用计算出来的hash码找映射表中存储数据的文件地址获取数据。
 
@@ -62,7 +62,7 @@ mysql> SHOW GLOBAL STATUS LIKE 'Innodb_page_size';
   * timestamp：4字节 
   * datetime：8字节  
 * 如果字段允许为 NULL，需要1字节记录是否为 NULL
-###MyISAM 和 InnoDB 存储引擎索引实现
+### MyISAM 和 InnoDB 存储引擎索引实现
 
 mysql data目录中 MyISAM 数据表的文件结构
 ![](../images/posts/database/mysql-data-storage-structure.jpg)
@@ -84,7 +84,7 @@ mysql data目录中 MyISAM 数据表的文件结构
     非主键索引叶子节点不存储数据，而是存储主键索引，主要是为了一致性和节省空间，如果主键索引和非主键索引叶子节点都存储数据，会造成比如数据的更新时数据同步时的开销。
     通过非主键索引查找数据时，找到索引相关的叶子节点后会根据主键索引再到主键索引的B+Tree中继续查找数据返回，也就是我们说的回表，mysql会根据自己算法去估算直接查找还是通过索引去查找，因此有时会看到通过非主键索引查找数据时，有时候会用到 index，有时候没用到。
 
-###联合索引的底层存储结构
+### 联合索引的底层存储结构
 
 ![](../images/posts/database/mysql-joint-index-data-structure.jpg)
 
