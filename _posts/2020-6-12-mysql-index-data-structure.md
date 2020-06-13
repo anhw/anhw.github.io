@@ -1,10 +1,13 @@
+索引是帮助MySQL高效获取数据的排好序的数据结构
 ##Mysql 索引数据结构
 **索引是帮助MySQL高效获取数据的排好序的数据结构**
 * mysql 索引包含如下两种数据结构
   * BTREE
-  * HASH
->我们创建索引时默认使用 BTREE，mysql 的 BTREE 是 B-Tree 的变种 B+Tree 
->>数据结构的演示可以在网站[https://www.cs.usfca.edu/~galles/visualization/](https://www.cs.usfca.edu/~galles/visualization/)中进行
+  * HASH 
+  
+  
+我们创建索引时默认使用 BTREE，mysql 的 BTREE 是 B-Tree 的变种 B+Tree 
+数据结构的演示可以在网站[https://www.cs.usfca.edu/~galles/visualization/](https://www.cs.usfca.edu/~galles/visualization/)中进行
 ###B-Tree
 ![](../images/posts/java/mysql-b-tree.jpg)
 1~8依次插入，对于 mysql 索引，每个节点都存储索引相关数据 
@@ -72,7 +75,7 @@ mysql data目录中 MyISAM 数据表的文件结构
 
 ![](../images/posts/java/mysql-joint-index-data-structure.jpg)
 
-    以上结构可以解释最左前缀和覆盖索引等我们常说的mysql索引优化原理
+以上结构可以解释最左前缀和覆盖索引等我们常说的mysql索引优化原理
 * 最左前缀：如果匹配最左前缀，那么 mysql 查询的时候根据第一个联合索引字段匹配到查找范围，然后在匹配到的子节点中根据第二个字段去匹配（因为B-Tree的原理，小于父节点的数据存储在左边的子节点中，大于等于父节点的数据存储在右边的子节点中）；如果没有匹配最左前缀，mysql 要扫描整个索引树，匹配到第二个字段的节点，然后继续查找...
 * 覆盖索引：如果联合索引不包含主键，那么覆盖索引（全值匹配）得话，mysql 从索引中就可以拿到数据，而不用再去回表查询，否则要去主键索引树中查找数据并返回。
 
