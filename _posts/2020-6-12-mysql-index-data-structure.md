@@ -19,7 +19,7 @@ keywords: java,database
 
 ### B-Tree
 
-![](../images/posts/database/mysql-b-tree.jpg)
+![](https://github.com/anhw/anhw.github.io/blob/master/images/posts/database/mysql-b-tree.jpg)
 
 1~8依次插入，对于 mysql 索引，每个节点都存储索引相关数据 
 * 节点中的数据从左到有一次递增
@@ -68,7 +68,7 @@ mysql> SHOW GLOBAL STATUS LIKE 'Innodb_page_size';
 
 mysql data目录中 MyISAM 数据表的文件结构
 
-![](../images/posts/database/mysql-data-storage-structure.jpg)
+![](https://github.com/anhw/anhw.github.io/blob/master/images/posts/database/mysql-data-storage-structure.jpg)
 
 * 其中 myisam 开头的为 MyISAM 存储引擎的表，innodb 开头的为 InnoDB 存储引擎的表。
 
@@ -89,7 +89,7 @@ mysql data目录中 MyISAM 数据表的文件结构
 
 ### 联合索引的底层存储结构
 
-![](../images/posts/database/mysql-joint-index-data-structure.jpg)
+![](https://github.com/anhw/anhw.github.io/blob/master/images/posts/database/mysql-joint-index-data-structure.jpg)
 
 以上结构可以解释最左前缀和覆盖索引等我们常说的mysql索引优化原理
 * 最左前缀：如果匹配最左前缀，那么 mysql 查询的时候根据第一个联合索引字段匹配到查找范围，然后在匹配到的子节点中根据第二个字段去匹配（因为B-Tree的原理，小于父节点的数据存储在左边的子节点中，大于等于父节点的数据存储在右边的子节点中）；如果没有匹配最左前缀，mysql 要扫描整个索引树，匹配到第二个字段的节点，然后继续查找...
