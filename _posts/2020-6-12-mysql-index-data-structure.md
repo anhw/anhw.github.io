@@ -27,7 +27,7 @@ keywords: java,database
 
 ### B+Tree
 
-![](../images/posts/database/mysql-b+tree.jpg)
+![](https://github.com/anhw/anhw.github.io/blob/master/images/posts/database/mysql-b+tree.jpg)
 
 * 节点中的数据从左到有依次递增
 * 1\~8依次插入，对于 mysql 索引，只有叶子节点存储索引相关数据，可以看到叶子节点是带有指针的，从左到右依次为1\~8，对于 mysql 来说，这里的指针是双向的，8也有指针指向1，双向指针也方便 mysql 对索引进行升序或降序排列。
