@@ -20,6 +20,7 @@ keywords: java,database
 ### B-Tree
 
 ![](../images/posts/database/mysql-b-tree.jpg)
+
 1~8依次插入，对于 mysql 索引，每个节点都存储索引相关数据 
 * 节点中的数据从左到有一次递增
 * 叶子结点具有相同的深度
@@ -27,6 +28,7 @@ keywords: java,database
 ### B+Tree
 
 ![](../images/posts/database/mysql-b+tree.jpg)
+
 * 节点中的数据从左到有依次递增
 * 1~8依次插入，对于 mysql 索引，只有叶子节点存储索引相关数据，可以看到叶子节点是带有指针的，从左到右依次为1~8，对于 mysql 来说，这里的指针是双向的，8也有指针指向1，双向指针也方便 mysql 对索引进行升序或降序排列。
 * 由于索引存储的时候B+Tree已经对索引做好排序，所以使用 order by 对索引排序时 explain 的 Extra 中一般看不到 Using filesort
@@ -65,6 +67,7 @@ mysql> SHOW GLOBAL STATUS LIKE 'Innodb_page_size';
 ### MyISAM 和 InnoDB 存储引擎索引实现
 
 mysql data目录中 MyISAM 数据表的文件结构
+
 ![](../images/posts/database/mysql-data-storage-structure.jpg)
 
 * 其中 myisam 开头的为 MyISAM 存储引擎的表，innodb 开头的为 InnoDB 存储引擎的表。
